@@ -16,10 +16,10 @@ class MainPageState extends State<MainPage> {
   int _navIndex = 0;
 
   final List<Widget> _pages = [
-    HomePage(),
-    DictionaryPage(),
-    AskPage(),
-    SettingsPage(),
+    const HomePage(),
+    const DictionaryPage(),
+    const AskPage(),
+    const SettingsPage(),
   ];
 
   @override
