@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:algorithm_architects/shared.dart';
 import 'package:algorithm_architects/entry_card.dart';
+import 'package:algorithm_architects/ai_requests.dart';
 
 class EntryDetails extends StatefulWidget {
   final EntryType type;
@@ -77,12 +78,18 @@ class _EntryDetailsState extends State<EntryDetails> {
     );
   }
 
-  void _checkSentence() {
-    // TODO: Send data
-    print('Checking sentence...');
-    print('Sentence: ${userSentenceController.text}');
-    setState(() {
-      aiAnswer = "${userSentenceController.text} is correct.";
-    });
+  Future<void> _checkSentence() async {
+    Map<String, dynamic> response = await AIRequests.checkSentence(
+        widget.type, widget.title, userSentenceController.text);
+    if (response['cevap']) {
+      setState(() {
+        aiAnswer = 'Kurduğun cümle doğru!';
+      });
+    } else {
+      setState(() {
+        aiAnswer =
+            'Ne yazık ki kurduğun cümlede bir hata var. ${response['aciklama']}';
+      });
+    }
   }
 }
