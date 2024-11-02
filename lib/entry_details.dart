@@ -39,7 +39,7 @@ class _EntryDetailsState extends State<EntryDetails> {
               type: widget.type,
               title: widget.title,
               definition: widget.definition,
-              navigate: false,
+              inHomePage: false,
             ),
             Card(
               child: Column(

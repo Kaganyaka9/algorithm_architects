@@ -22,20 +22,20 @@ class HomePage extends StatelessWidget {
                 title: 'Melankolik',
                 definition:
                     'Melankolik demek, biraz üzgün ve düşünceli olmak demektir. Mesela, yağmurlu bir günde pencereden dışarıyı izlerken biraz hüzünlü hissedersin ya, işte o sırada kendini melankolik hissedebilirsin. Melankolik olan insanlar, bazen yalnız kalmayı, kitap okumayı veya müzik dinlemeyi severler. Bu, kötü bir şey değil, sadece bir duygu durumudur. Tıpkı mutlu, heyecanlı veya kızgın olmak gibi.',
-                navigate: true),
+                inHomePage: true),
             EntryCard(
               type: EntryType.atasozu,
               title: 'Armut dibine düşer.',
               definition:
                   'Bu atasözü, genellikle bir kişinin ailesinden veya yakın çevresinden gördüğü örnekleri taklit ettiği ve onlara benzediği anlamına gelir. Yani, bir çocuk genellikle ailesinin davranışlarını, alışkanlıklarını ve değerlerini benimser.',
-              navigate: true,
+              inHomePage: true,
             ),
             EntryCard(
               type: EntryType.deyim,
               title: 'Göze batmak',
               definition:
                   'Bir şeyin çok belirgin veya rahatsız edici olması. Örneğin: "Yeni aldığı kıyafet o kadar gösterişliydi ki, herkese göze batıyordu."',
-              navigate: true,
+              inHomePage: true,
             ),
           ],
         ),

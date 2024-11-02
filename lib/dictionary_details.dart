@@ -20,7 +20,7 @@ class DictionaryDetails extends StatelessWidget {
         child: ListView(
           children: [
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: ListTile(
                 title: Text('Abanın kadri yağmurda bilinir.'),
                 subtitle: Text(

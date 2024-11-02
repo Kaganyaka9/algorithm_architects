@@ -7,13 +7,15 @@ class EntryCard extends StatelessWidget {
   final EntryType type;
   final String title;
   final String definition;
-  final bool navigate;
+
+  /// Whether card is in the home page or not. If true, card is tappable.
+  final bool inHomePage;
   const EntryCard({
     super.key,
     required this.type,
     required this.title,
     required this.definition,
-    required this.navigate,
+    required this.inHomePage,
   });
 
   @override
@@ -24,7 +26,7 @@ class EntryCard extends StatelessWidget {
         color: secondaryColor,
         child: ListTile(
           title: Text(
-            _getType(),
+            _setTitle(),
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 20,
@@ -46,14 +48,15 @@ class EntryCard extends StatelessWidget {
               ),
             ],
           ),
-          onTap: navigate ? () => _getDetails(context) : () {},
+          onTap: inHomePage ? () => _getDetails(context) : () {},
         ),
       ),
     );
   }
 
-  String _getType() {
-    if (navigate) {
+  /// Sets the title of the card based on the entry type and its location.
+  String _setTitle() {
+    if (inHomePage) {
       switch (type) {
         case EntryType.kelime:
           return 'Günün Kelimesi';
@@ -77,6 +80,7 @@ class EntryCard extends StatelessWidget {
     }
   }
 
+  /// Navigates to the details page of the entry.
   Future<void> _getDetails(BuildContext context) async {
     await Navigator.push(
         context,
