@@ -9,3 +9,32 @@ enum EntryType {
   atasozu,
   deyim,
 }
+
+void showAlert(BuildContext context, {bool shouldPop = false}) {
+  var alert = AlertDialog(
+    title: const Text(
+      "Bir Hata Oluştu",
+    ),
+    content: const Text(
+      "Bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.",
+    ),
+    actions: [
+      TextButton(
+        onPressed: () {
+          Navigator.pop(context);
+          if (shouldPop) {
+            Navigator.pop(context);
+          }
+        },
+        child: const Text(
+          "Tamam",
+          style: TextStyle(
+            color: primaryColor,
+          ),
+        ),
+      )
+    ],
+  );
+
+  showDialog(context: context, builder: (BuildContext context) => alert);
+}

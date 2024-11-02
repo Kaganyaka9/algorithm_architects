@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:algorithm_architects/shared.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:image_picker/image_picker.dart';
 
 /// AIRequests class contains static methods to interact with the Gemini AI model.
 abstract class AIRequests {
@@ -69,11 +70,8 @@ abstract class AIRequests {
     }
   }
 
-  /// Generate an image for the given entry.
-  Future<void> generateImage(EntryType type, String title) async {}
-
   /// Ask a question by providing an image of the question and string of user's answer.
-  Future<String> askQuestion(String userAnswer) async {
+  static Future<String> askQuestion(String userAnswer, XFile image) async {
     return "Gemini Cevabı";
   }
 }

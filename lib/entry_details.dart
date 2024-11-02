@@ -14,12 +14,12 @@ class EntryDetails extends StatefulWidget {
       required this.definition});
 
   @override
-  State<EntryDetails> createState() => _EntryDetailsState();
+  EntryDetailsState createState() => EntryDetailsState();
 }
 
-class _EntryDetailsState extends State<EntryDetails> {
-  TextEditingController userSentenceController = TextEditingController();
-  String aiAnswer = '';
+class EntryDetailsState extends State<EntryDetails> {
+  final TextEditingController _userSentenceController = TextEditingController();
+  String _aiAnswer = '';
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class _EntryDetailsState extends State<EntryDetails> {
                     style: TextStyle(fontSize: 16),
                   ),
                   TextField(
-                    controller: userSentenceController,
+                    controller: _userSentenceController,
                     decoration: const InputDecoration(
                       hintText: 'Örnek cümle girin',
                     ),
@@ -68,7 +68,7 @@ class _EntryDetailsState extends State<EntryDetails> {
                       ),
                     ),
                   ),
-                  Text(aiAnswer, style: const TextStyle(fontSize: 16)),
+                  Text(_aiAnswer, style: const TextStyle(fontSize: 16)),
                 ],
               ),
             )
@@ -80,14 +80,14 @@ class _EntryDetailsState extends State<EntryDetails> {
 
   Future<void> _checkSentence() async {
     Map<String, dynamic> response = await AIRequests.checkSentence(
-        widget.type, widget.title, userSentenceController.text);
+        widget.type, widget.title, _userSentenceController.text);
     if (response['cevap']) {
       setState(() {
-        aiAnswer = 'Kurduğun cümle doğru!';
+        _aiAnswer = 'Kurduğun cümle doğru!';
       });
     } else {
       setState(() {
-        aiAnswer =
+        _aiAnswer =
             'Ne yazık ki kurduğun cümlede bir hata var. ${response['aciklama']}';
       });
     }
