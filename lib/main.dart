@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:algorithm_architects/navigation.dart';
+import 'package:algorithm_architects/main_page.dart';
 
 void main() {
   runApp(const MyApp());

@@ -5,6 +5,7 @@ import 'package:algorithm_architects/dictionary_page.dart';
 import 'package:algorithm_architects/ask_page.dart';
 import 'package:algorithm_architects/settings_page.dart';
 
+/// Controls the navigation between the pages.
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 

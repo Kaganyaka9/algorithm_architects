@@ -24,7 +24,7 @@ class _EntryDetailsState extends State<EntryDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detaylar', style: TextStyle(color: Colors.white)),
+        title: Text(widget.title, style: const TextStyle(color: Colors.white)),
         backgroundColor: primaryColor,
         foregroundColor: Colors.white,
       ),

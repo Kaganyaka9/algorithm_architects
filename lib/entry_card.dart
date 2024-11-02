@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:algorithm_architects/shared.dart';
 import 'package:algorithm_architects/entry_details.dart';
 
+/// A card that displays the title and definition of a dictionary entry.
 class EntryCard extends StatelessWidget {
   final EntryType type;
   final String title;
