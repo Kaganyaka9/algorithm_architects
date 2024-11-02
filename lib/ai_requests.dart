@@ -72,6 +72,28 @@ abstract class AIRequests {
 
   /// Ask a question by providing an image of the question and string of user's answer.
   static Future<String> askQuestion(String userAnswer, XFile image) async {
-    return "Gemini Cevabı";
+    final model = GenerativeModel(
+      model: 'gemini-1.5-flash-latest',
+      apiKey: const String.fromEnvironment("Gemini_API_KEY"),
+      systemInstruction: Content.text(
+          'Sen bir ilkokul matematik öğretmenisin. Bir öğrenci aşağıdaki soruyu çözemedi ve çözmeye çalıştığı adımları yazdı. Soruyu adım adım incele. Öğrencinin nerede hata yaptığını bul ve öğrenciye açıkla. Öğrenci işlem hatası yaparak sonucu yanlış bulmuş olabilir. Öğrenciye sorunun cevabını kesinlikle söyleme. İlkokul öğrencisine açıklarmış gibi açıkla. Türkçe açıkla.'),
+    );
+    final prompt = userAnswer;
+    String base64Image = base64Encode(await image.readAsBytes());
+
+    final content = [
+      Content.text(prompt),
+      Content.data("image/jpeg", await image.readAsBytes())
+    ];
+    // final content2 = [
+    //   Content.multi(parts: [
+    //     Content.text(prompt),
+    //     Content.data("image", await image.readAsBytes())
+    //   ])
+    // ];
+
+    final response = await model.generateContent(content);
+    print(response.text);
+    return response.text!;
   }
 }

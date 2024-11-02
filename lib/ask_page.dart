@@ -16,6 +16,7 @@ class AskPageState extends State<AskPage> {
   String _aiAnswer = '';
   bool _imagePickerActive = true;
   bool _imageSelected = false;
+  bool _loading = false;
   final ImagePicker _picker = ImagePicker();
   late XFile _image;
   @override
@@ -28,12 +29,12 @@ class AskPageState extends State<AskPage> {
       body: Container(
         alignment: Alignment.topCenter,
         padding: const EdgeInsets.all(16),
-        child: Column(
+        child: ListView(
           children: [
             const Text(
                 "Çözemediğiniz bir sorunun net, rahatça okunabildiği bir fotoğrafını yükleyin. Ayrıca çözmeye çalıştığınız adımlarını yazın. Yapay zekâ nerede hata yaptığızı söyleyerek yardımcı olacak."),
             TextButton(
-              onPressed: _imagePickerActive
+              onPressed: _imagePickerActive && !_loading
                   ? () {
                       _getImage(ImageSource.camera);
                     }
@@ -41,7 +42,7 @@ class AskPageState extends State<AskPage> {
               child: const Text("Fotoğraf çek"),
             ),
             TextButton(
-              onPressed: _imagePickerActive
+              onPressed: _imagePickerActive && !_loading
                   ? () {
                       _getImage(ImageSource.gallery);
                     }
@@ -54,17 +55,25 @@ class AskPageState extends State<AskPage> {
               decoration: const InputDecoration(
                 hintText: 'Cevabınızı yazın',
               ),
+              keyboardType: TextInputType.multiline,
+              maxLines: 10,
             ),
             TextButton(
               // Send photo and user answer to AI, then show the response
-              onPressed: () async {
-                final String aiAnswerText = await AIRequests.askQuestion(
-                    _userAnswerController.text, _image);
+              onPressed: !_loading
+                  ? () async {
+                      setState(() {
+                        _loading = true;
+                      });
+                      final String aiAnswerText = await AIRequests.askQuestion(
+                          _userAnswerController.text, _image);
 
-                setState(() {
-                  _aiAnswer = aiAnswerText;
-                });
-              },
+                      setState(() {
+                        _aiAnswer = aiAnswerText;
+                        _loading = false;
+                      });
+                    }
+                  : () {},
               child: const Text("Gönder"),
             ),
             Text(_aiAnswer)
@@ -89,9 +98,9 @@ class AskPageState extends State<AskPage> {
           mounted) {
         showAlert(context);
       }
-      setState(() {
-        _imagePickerActive = true;
-      });
     }
+    setState(() {
+      _imagePickerActive = true;
+    });
   }
 }
