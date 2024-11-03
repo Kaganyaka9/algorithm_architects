@@ -79,8 +79,6 @@ abstract class AIRequests {
           'Sen bir ilkokul matematik öğretmenisin. Bir öğrenci aşağıdaki soruyu çözemedi ve çözmeye çalıştığı adımları yazdı. Soruyu adım adım incele. Öğrencinin nerede hata yaptığını bul ve öğrenciye açıkla. Öğrenci işlem hatası yaparak sonucu yanlış bulmuş olabilir. Öğrenciye sorunun cevabını kesinlikle söyleme. İlkokul öğrencisine açıklarmış gibi açıkla. Türkçe açıkla.'),
     );
     final prompt = userAnswer;
-    String base64Image = base64Encode(await image.readAsBytes());
-
     final content = [
       Content.text(prompt),
       Content.data("image/jpeg", await image.readAsBytes())

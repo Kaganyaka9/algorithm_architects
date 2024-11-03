@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:algorithm_architects/shared.dart';
 import 'package:algorithm_architects/entry_card.dart';
 import 'package:algorithm_architects/ai_requests.dart';
+import 'package:algorithm_architects/dictionary_data.dart';
 
 class EntryDetails extends StatefulWidget {
   final EntryType type;
-  final String title;
-  final String definition;
-  const EntryDetails(
-      {super.key,
-      required this.type,
-      required this.title,
-      required this.definition});
+  final int index;
+  const EntryDetails({
+    super.key,
+    required this.type,
+    required this.index,
+  });
 
   @override
   EntryDetailsState createState() => EntryDetailsState();
@@ -25,7 +25,15 @@ class EntryDetailsState extends State<EntryDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title, style: const TextStyle(color: Colors.white)),
+        title: Text(
+          switch (widget.type) {
+            EntryType.kelime => DictionaryData.kelimeler[widget.index]['title'],
+            EntryType.atasozu => DictionaryData.atasozleri[widget.index]
+                ['title'],
+            EntryType.deyim => DictionaryData.deyimler[widget.index]['title'],
+          },
+          style: const TextStyle(color: Colors.white),
+        ),
         backgroundColor: primaryColor,
         foregroundColor: Colors.white,
       ),
@@ -37,8 +45,7 @@ class EntryDetailsState extends State<EntryDetails> {
             // TODO: Add Entry Image here
             EntryCard(
               type: widget.type,
-              title: widget.title,
-              definition: widget.definition,
+              index: widget.index,
               inHomePage: false,
             ),
             Card(
@@ -79,8 +86,14 @@ class EntryDetailsState extends State<EntryDetails> {
   }
 
   Future<void> _checkSentence() async {
+    final title = switch (widget.type) {
+      EntryType.kelime => DictionaryData.kelimeler[widget.index]['title'],
+      EntryType.atasozu => DictionaryData.atasozleri[widget.index]['title'],
+      EntryType.deyim => DictionaryData.deyimler[widget.index]['title'],
+    };
+
     Map<String, dynamic> response = await AIRequests.checkSentence(
-        widget.type, widget.title, _userSentenceController.text);
+        widget.type, title, _userSentenceController.text);
     if (response['cevap']) {
       setState(() {
         _aiAnswer = 'Kurduğun cümle doğru!';

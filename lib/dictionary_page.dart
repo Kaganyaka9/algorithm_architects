@@ -35,7 +35,7 @@ class DictionaryPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => const DictionaryDetails(
-                              type: EntryType.kelime,
+                              type: EntryType.atasozu,
                             ))),
               ),
               ListTile(
@@ -45,7 +45,7 @@ class DictionaryPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => const DictionaryDetails(
-                              type: EntryType.kelime,
+                              type: EntryType.deyim,
                             ))),
               ),
             ],

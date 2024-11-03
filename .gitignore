@@ -3,6 +3,7 @@
 .DS_Store
 env.json
 .idea/
+assets/
 
 # Files and directories created by pub
 .dart_tool/

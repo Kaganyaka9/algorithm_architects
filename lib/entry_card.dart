@@ -1,57 +1,81 @@
 import 'package:flutter/material.dart';
 import 'package:algorithm_architects/shared.dart';
 import 'package:algorithm_architects/entry_details.dart';
+import 'package:algorithm_architects/dictionary_data.dart';
 
 /// A card that displays the title and definition of a dictionary entry.
 class EntryCard extends StatelessWidget {
   final EntryType type;
-  final String title;
-  final String definition;
+  final int index;
 
   /// Whether card is in the home page or not. If true, card is tappable.
   final bool inHomePage;
   const EntryCard({
     super.key,
     required this.type,
-    required this.title,
-    required this.definition,
+    required this.index,
     required this.inHomePage,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Card(
-        color: secondaryColor,
-        child: ListTile(
-          title: Text(
-            _setTitle(),
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: InkWell(
+          onTap: inHomePage ? () => _getDetails(context) : null,
+          child: Card(
+            color: secondaryColor,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        _setTitle(),
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                  // TODO: Add Entry Image here
+                  Wrap(
+                    children: [
+                      Text(
+                        switch (type) {
+                          EntryType.kelime => DictionaryData.kelimeler[index]
+                              ['title'],
+                          EntryType.atasozu => DictionaryData.atasozleri[index]
+                              ['title'],
+                          EntryType.deyim => DictionaryData.deyimler[index]
+                              ['title'],
+                        },
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(fontSize: 22),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    switch (type) {
+                      EntryType.kelime => DictionaryData.kelimeler[index]
+                          ['description'],
+                      EntryType.atasozu => DictionaryData.atasozleri[index]
+                          ['description'],
+                      EntryType.deyim => DictionaryData.deyimler[index]
+                          ['description'],
+                    },
+                    style: const TextStyle(fontSize: 18),
+                  ),
+                ],
+              ),
             ),
           ),
-          subtitle: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(fontSize: 24, color: Colors.black),
-                textAlign: TextAlign.center,
-              ),
-              Text(
-                definition,
-                style: const TextStyle(fontSize: 16, color: Colors.black),
-                textAlign: TextAlign.start,
-              ),
-            ],
-          ),
-          onTap: inHomePage ? () => _getDetails(context) : () {},
-        ),
-      ),
-    );
+        ));
   }
 
   /// Sets the title of the card based on the entry type and its location.
@@ -87,8 +111,7 @@ class EntryCard extends StatelessWidget {
         MaterialPageRoute(
             builder: (context) => EntryDetails(
                   type: type,
-                  title: title,
-                  definition: definition,
+                  index: index,
                 )));
   }
 }
