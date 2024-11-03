@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:algorithm_architects/dictionary_data.dart';
 
 const Color primaryColor = Color(0xFF2C8FFF);
 const Color secondaryColor = Color(0xFF00b5ff);
@@ -8,6 +9,21 @@ enum EntryType {
   kelime,
   atasozu,
   deyim,
+}
+
+String getAssetName(EntryType type, int index) {
+  final folder = switch (type) {
+    EntryType.kelime => "kelime",
+    EntryType.atasozu => "atasozu",
+    EntryType.deyim => "deyim",
+  };
+  final id = switch (type) {
+    EntryType.kelime => DictionaryData.kelimeler[index]['id'],
+    EntryType.atasozu => DictionaryData.atasozleri[index]['id'],
+    EntryType.deyim => DictionaryData.deyimler[index]['id'],
+  };
+
+  return "assets/$folder/$id.jpeg";
 }
 
 void showAlert(BuildContext context, {bool shouldPop = false}) {

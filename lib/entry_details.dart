@@ -42,41 +42,52 @@ class EntryDetailsState extends State<EntryDetails> {
         alignment: Alignment.topCenter,
         child: ListView(
           children: [
-            // TODO: Add Entry Image here
             EntryCard(
               type: widget.type,
               index: widget.index,
               inHomePage: false,
             ),
             Card(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Bu tanıma göre örnek cümle girin: ',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  TextField(
-                    controller: _userSentenceController,
-                    decoration: const InputDecoration(
-                      hintText: 'Örnek cümle girin',
+              color: secondaryColor,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Bu tanıma göre örnek cümle girin: ',
+                      style: TextStyle(fontSize: 16),
                     ),
-                  ),
-                  TextButton(
-                    onPressed: _checkSentence,
-                    style: TextButton.styleFrom(
-                        backgroundColor: primaryColor,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16))),
-                    child: const Text(
-                      'Kontrol et',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 63, 58, 43),
+                    TextField(
+                      controller: _userSentenceController,
+                      decoration: const InputDecoration(
+                        hintText: 'Örnek cümle girin',
                       ),
+                      keyboardType: TextInputType.multiline,
+                      maxLines: 10,
                     ),
-                  ),
-                  Text(_aiAnswer, style: const TextStyle(fontSize: 16)),
-                ],
+                    const SizedBox(height: 40),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          onPressed: _checkSentence,
+                          style: TextButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16))),
+                          child: const Text(
+                            'Kontrol et',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(_aiAnswer, style: const TextStyle(fontSize: 16)),
+                  ],
+                ),
               ),
             )
           ],

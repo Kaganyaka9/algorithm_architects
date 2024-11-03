@@ -18,6 +18,20 @@ class DictionaryPage extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: ListView(
             children: [
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: InkWell(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DictionaryDetails(
+                                type: EntryType.kelime,
+                              ))),
+                  child: Card(
+                    color: lightColor,
+                  ),
+                ),
+              ),
               ListTile(
                 title: const Text("Resimli Türkçe Sözlük"),
                 tileColor: lightColor,

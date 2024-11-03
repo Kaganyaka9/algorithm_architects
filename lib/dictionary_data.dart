@@ -2,16 +2,19 @@
 abstract class DictionaryData {
   static const List<Map<String, dynamic>> kelimeler = [
     {
+      'id': 1,
       'title': 'Melankolik',
       'description':
           'Melankolik demek, biraz üzgün ve düşünceli olmak demektir. Mesela, yağmurlu bir günde pencereden dışarıyı izlerken biraz hüzünlü hissedersin ya, işte o sırada kendini melankolik hissedebilirsin. Melankolik olan insanlar, bazen yalnız kalmayı, kitap okumayı veya müzik dinlemeyi severler. Bu, kötü bir şey değil, sadece bir duygu durumudur. Tıpkı mutlu, heyecanlı veya kızgın olmak gibi.',
     },
     {
+      'id': 2,
       'title': 'Gökkuşağı',
       'description':
           'Yağmurdan sonra gökyüzünde oluşan, birbirine geçmiş renkli çizgiler.',
     },
     {
+      'id': 3,
       'title': 'Kelebek',
       'description':
           'Kanatları renkli ve pullu olan, çiçeklerden nektar emerek beslenen küçük bir böcek.',

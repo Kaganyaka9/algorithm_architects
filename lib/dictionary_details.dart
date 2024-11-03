@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:algorithm_architects/shared.dart';
 import 'package:algorithm_architects/dictionary_data.dart';
 
+/// A page that Lists words, proverbs or idioms depending on the type. Shows images and titles.
 class DictionaryDetails extends StatelessWidget {
   final EntryType type;
   const DictionaryDetails({super.key, required this.type});
@@ -31,13 +32,32 @@ class DictionaryDetails extends StatelessWidget {
               EntryType.deyim => DictionaryData.deyimler,
             };
             return Padding(
-              padding: const EdgeInsets.all(8),
-              child: ListTile(
-                title: Text(wordList[index]['title']),
-                tileColor: lightColor,
-                onTap: () => _getDetails(context, index),
-              ),
-            );
+                padding: const EdgeInsets.all(8),
+                child: InkWell(
+                  onTap: () => _getDetails(context, index),
+                  child: Card(
+                    color: lightColor,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints(maxWidth: 80),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.asset(getAssetName(type, index))),
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            wordList[index]['title'],
+                            style: const TextStyle(fontSize: 20),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ));
           },
         ),
       ),

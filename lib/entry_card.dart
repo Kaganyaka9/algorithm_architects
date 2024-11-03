@@ -36,30 +36,42 @@ class EntryCard extends StatelessWidget {
                       Text(
                         _setTitle(),
                         style: const TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 300),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.asset(getAssetName(type, index))),
+                    ),
+                  ),
+                  Center(
+                    child: Wrap(
+                      children: [
+                        Text(
+                          switch (type) {
+                            EntryType.kelime => DictionaryData.kelimeler[index]
+                                ['title'],
+                            EntryType.atasozu =>
+                              DictionaryData.atasozleri[index]['title'],
+                            EntryType.deyim => DictionaryData.deyimler[index]
+                                ['title'],
+                          },
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.bold),
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                  // TODO: Add Entry Image here
-                  Wrap(
-                    children: [
-                      Text(
-                        switch (type) {
-                          EntryType.kelime => DictionaryData.kelimeler[index]
-                              ['title'],
-                          EntryType.atasozu => DictionaryData.atasozleri[index]
-                              ['title'],
-                          EntryType.deyim => DictionaryData.deyimler[index]
-                              ['title'],
-                        },
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 22),
-                      ),
-                    ],
-                  ),
+                  const SizedBox(height: 10),
                   Text(
                     switch (type) {
                       EntryType.kelime => DictionaryData.kelimeler[index]
