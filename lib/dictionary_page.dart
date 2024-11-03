@@ -9,7 +9,10 @@ class DictionaryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Resimli Sözlük'),
+        title: const Text(
+          'Resimli Sözlük',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         backgroundColor: primaryColor,
         foregroundColor: Colors.white,
       ),
@@ -19,7 +22,7 @@ class DictionaryPage extends StatelessWidget {
           child: ListView(
             children: [
               Padding(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.symmetric(vertical: 4),
                 child: InkWell(
                   onTap: () => Navigator.push(
                       context,
@@ -27,40 +30,59 @@ class DictionaryPage extends StatelessWidget {
                           builder: (context) => const DictionaryDetails(
                                 type: EntryType.kelime,
                               ))),
-                  child: Card(
-                    color: lightColor,
+                  child: const Card(
+                    color: secondaryColor,
+                    child: Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Text(
+                        'Resimli Türkçe Sözlük',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
                   ),
                 ),
               ),
-              ListTile(
-                title: const Text("Resimli Türkçe Sözlük"),
-                tileColor: lightColor,
-                onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const DictionaryDetails(
-                              type: EntryType.kelime,
-                            ))),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: InkWell(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DictionaryDetails(
+                                type: EntryType.atasozu,
+                              ))),
+                  child: const Card(
+                    color: secondaryColor,
+                    child: Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Text(
+                        'Resimli Atasözleri Sözlüğü',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ),
               ),
-              ListTile(
-                title: const Text("Resimli Atasözleri Sözlüğü"),
-                tileColor: lightColor,
-                onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const DictionaryDetails(
-                              type: EntryType.atasozu,
-                            ))),
-              ),
-              ListTile(
-                title: const Text("Resimli Deyimler Sözlüğü"),
-                tileColor: lightColor,
-                onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const DictionaryDetails(
-                              type: EntryType.deyim,
-                            ))),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: InkWell(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DictionaryDetails(
+                                type: EntryType.deyim,
+                              ))),
+                  child: const Card(
+                    color: secondaryColor,
+                    child: Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Text(
+                        'Resimli Deyimler Sözlüğü',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ],
           )),

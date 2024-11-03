@@ -9,7 +9,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ana Sayfa', style: TextStyle(color: Colors.white)),
+        title: const Text('Ana Sayfa',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         backgroundColor: primaryColor,
       ),
       body: Container(

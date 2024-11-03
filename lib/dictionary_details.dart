@@ -12,13 +12,16 @@ class DictionaryDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sözlük Detayları'),
+        title: const Text(
+          'Sözlük Detayları',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         backgroundColor: primaryColor,
         foregroundColor: Colors.white,
       ),
       body: Container(
         alignment: Alignment.topCenter,
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
         child: ListView.builder(
           itemCount: switch (type) {
             EntryType.kelime => DictionaryData.kelimeler.length,
@@ -32,17 +35,17 @@ class DictionaryDetails extends StatelessWidget {
               EntryType.deyim => DictionaryData.deyimler,
             };
             return Padding(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.symmetric(vertical: 6),
                 child: InkWell(
                   onTap: () => _getDetails(context, index),
                   child: Card(
-                    color: lightColor,
+                    color: secondaryColor,
                     child: Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(14.0),
                           child: ConstrainedBox(
-                            constraints: const BoxConstraints(maxWidth: 80),
+                            constraints: const BoxConstraints(maxWidth: 70),
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
                                 child: Image.asset(getAssetName(type, index))),

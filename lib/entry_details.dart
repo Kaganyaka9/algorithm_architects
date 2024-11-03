@@ -20,6 +20,7 @@ class EntryDetails extends StatefulWidget {
 class EntryDetailsState extends State<EntryDetails> {
   final TextEditingController _userSentenceController = TextEditingController();
   String _aiAnswer = '';
+  bool _aiChecking = false;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,8 @@ class EntryDetailsState extends State<EntryDetails> {
                 ['title'],
             EntryType.deyim => DictionaryData.deyimler[widget.index]['title'],
           },
-          style: const TextStyle(color: Colors.white),
+          style:
+              const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         backgroundColor: primaryColor,
         foregroundColor: Colors.white,
@@ -54,49 +56,72 @@ class EntryDetailsState extends State<EntryDetails> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Bu tanıma göre örnek cümle girin: ',
-                      style: TextStyle(fontSize: 16),
+                    Text(
+                      'Tanıma göre ${_setInfoText()} kullanarak aşağıdaki kutuya bir cümle yaz. Yapay zekâ cümleni analiz ederek ${_setInfoText()} doğru kullanıp kullanmadığını kontrol edecek.',
+                      style: const TextStyle(fontSize: 18),
                     ),
-                    TextField(
-                      controller: _userSentenceController,
-                      decoration: const InputDecoration(
-                        hintText: 'Örnek cümle girin',
-                      ),
-                      keyboardType: TextInputType.multiline,
-                      maxLines: 10,
-                    ),
-                    const SizedBox(height: 40),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextButton(
-                          onPressed: _checkSentence,
-                          style: TextButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(16))),
-                          child: const Text(
-                            'Kontrol et',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 0, 0, 0),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Text(_aiAnswer, style: const TextStyle(fontSize: 16)),
                   ],
                 ),
               ),
-            )
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TextField(
+              controller: _userSentenceController,
+              decoration: createTextFieldDecoration('Örnek cümle girin'),
+              keyboardType: TextInputType.multiline,
+              maxLines: 10,
+            ),
+            const SizedBox(height: 20),
+            if (_aiAnswer != '')
+              Card(
+                color: secondaryColor,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    _aiAnswer,
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                ),
+              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: !_aiChecking ? _checkSentence : null,
+                  style: TextButton.styleFrom(
+                      backgroundColor: secondaryColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16))),
+                  child: const Text(
+                    'Kontrol et',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
     );
   }
 
+  String _setInfoText() {
+    final wordType = switch (widget.type) {
+      EntryType.kelime => 'kelimeyi',
+      EntryType.atasozu => 'atasözünü',
+      EntryType.deyim => 'deyimi',
+    };
+    return wordType;
+  }
+
   Future<void> _checkSentence() async {
+    setState(() {
+      _aiChecking = true;
+    });
     final title = switch (widget.type) {
       EntryType.kelime => DictionaryData.kelimeler[widget.index]['title'],
       EntryType.atasozu => DictionaryData.atasozleri[widget.index]['title'],
@@ -108,11 +133,13 @@ class EntryDetailsState extends State<EntryDetails> {
     if (response['cevap']) {
       setState(() {
         _aiAnswer = 'Kurduğun cümle doğru!';
+        _aiChecking = false;
       });
     } else {
       setState(() {
         _aiAnswer =
             'Ne yazık ki kurduğun cümlede bir hata var. ${response['aciklama']}';
+        _aiChecking = false;
       });
     }
   }

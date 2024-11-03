@@ -52,6 +52,7 @@ class EntryCard extends StatelessWidget {
                           child: Image.asset(getAssetName(type, index))),
                     ),
                   ),
+                  const SizedBox(height: 10),
                   Center(
                     child: Wrap(
                       children: [
@@ -66,7 +67,7 @@ class EntryCard extends StatelessWidget {
                           },
                           textAlign: TextAlign.center,
                           style: const TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.bold),
+                              fontSize: 24, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -81,7 +82,7 @@ class EntryCard extends StatelessWidget {
                       EntryType.deyim => DictionaryData.deyimler[index]
                           ['description'],
                     },
-                    style: const TextStyle(fontSize: 18),
+                    style: const TextStyle(fontSize: 20),
                   ),
                 ],
               ),

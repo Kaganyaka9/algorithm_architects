@@ -23,7 +23,10 @@ class AskPageState extends State<AskPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Soru Sor', style: TextStyle(color: Colors.white)),
+        title: const Text(
+          'Soru Sor',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: primaryColor,
       ),
       body: Container(
@@ -31,50 +34,97 @@ class AskPageState extends State<AskPage> {
         padding: const EdgeInsets.all(16),
         child: ListView(
           children: [
-            const Text(
-                "Çözemediğiniz bir sorunun net, rahatça okunabildiği bir fotoğrafını yükleyin. Ayrıca çözmeye çalıştığınız adımlarını yazın. Yapay zekâ nerede hata yaptığızı söyleyerek yardımcı olacak."),
-            TextButton(
-              onPressed: _imagePickerActive && !_loading
-                  ? () {
-                      _getImage(ImageSource.camera);
-                    }
-                  : () {},
-              child: const Text("Fotoğraf çek"),
+            const Card(
+              color: secondaryColor,
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Çözemediğin bir sorunun net, rahatça okunabildiği bir fotoğrafını yükle. Ayrıca çözmeye çalıştığın adımlarını yaz. Yapay zekâ nerede hata yaptığını söyleyerek yardımcı olacak.',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
             ),
-            TextButton(
-              onPressed: _imagePickerActive && !_loading
-                  ? () {
-                      _getImage(ImageSource.gallery);
-                    }
-                  : () {},
-              child: const Text("Galeriden seç"),
+            Padding(
+              padding: const EdgeInsets.only(
+                  right: 90, left: 90, top: 15, bottom: 4),
+              child: TextButton(
+                onPressed: _imagePickerActive && !_loading
+                    ? () {
+                        _getImage(ImageSource.camera);
+                      }
+                    : () {},
+                style: TextButton.styleFrom(
+                  backgroundColor: secondaryColor,
+                  foregroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+                child: const Text('Fotoğraf çek'),
+              ),
             ),
-            Text(_imageSelected ? "[Görüntü seçildi]" : "[Görüntü seçilmedi]"),
+            Padding(
+              padding: const EdgeInsets.only(
+                  right: 90, left: 90, top: 4, bottom: 15),
+              child: TextButton(
+                onPressed: _imagePickerActive && !_loading
+                    ? () {
+                        _getImage(ImageSource.gallery);
+                      }
+                    : () {},
+                style: TextButton.styleFrom(
+                  backgroundColor: secondaryColor,
+                  foregroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+                child: const Text('Galeriden seç'),
+              ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.only(bottom: 12),
+              child: Text(
+                _imageSelected ? '[Görüntü seçildi]' : '[Görüntü seçilmedi]',
+                style: const TextStyle(fontSize: 18),
+              ),
+            ),
             TextField(
               controller: _userAnswerController,
-              decoration: const InputDecoration(
-                hintText: 'Cevabınızı yazın',
-              ),
+              decoration: createTextFieldDecoration('Lütfen cevabını yaz'),
               keyboardType: TextInputType.multiline,
               maxLines: 10,
+              style: const TextStyle(fontSize: 20),
             ),
-            TextButton(
-              // Send photo and user answer to AI, then show the response
-              onPressed: !_loading
-                  ? () async {
-                      setState(() {
-                        _loading = true;
-                      });
-                      final String aiAnswerText = await AIRequests.askQuestion(
-                          _userAnswerController.text, _image);
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 90, vertical: 15),
+              child: TextButton(
+                // Send photo and user answer to AI, then show the response
+                onPressed: !_loading
+                    ? () async {
+                        setState(() {
+                          _loading = true;
+                        });
+                        final String aiAnswerText =
+                            await AIRequests.askQuestion(
+                                _userAnswerController.text, _image);
 
-                      setState(() {
-                        _aiAnswer = aiAnswerText;
-                        _loading = false;
-                      });
-                    }
-                  : () {},
-              child: const Text("Gönder"),
+                        setState(() {
+                          _aiAnswer = aiAnswerText;
+                          _loading = false;
+                        });
+                      }
+                    : () {},
+                style: TextButton.styleFrom(
+                  backgroundColor: secondaryColor,
+                  foregroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+                child: const Text('Gönder'),
+              ),
             ),
             Text(_aiAnswer)
           ],
@@ -94,7 +144,7 @@ class AskPageState extends State<AskPage> {
         _imageSelected = true;
       });
     } catch (e) {
-      if (e.toString() != "Null check operator used on a null value" &&
+      if (e.toString() != 'Null check operator used on a null value' &&
           mounted) {
         showAlert(context);
       }
