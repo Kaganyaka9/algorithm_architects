@@ -3,21 +3,57 @@ abstract class DictionaryData {
   static const List<Map<String, dynamic>> kelimeler = [
     {
       'id': 1,
+      'title': 'Algoritma',
+      'description':
+          'Algoritma, bir işi baştan sona yapmak için takip ettiğimiz bir yol gibidir. Tıpkı bir kurabiye yaparken tarifteki adımları takip ettiğimiz gibi, bilgisayara da bir işi nasıl yapacağını anlatan adım adım bir yol gösteririz. Bu yola biz "algoritma" diyoruz. Mesela diş fırçalamak için yaptığımız hareketler (diş macunu sür, dişleri fırçala, ağzı çalkala) bir algoritmadır.',
+    },
+    {
+      'id': 9,
+      'title': 'Bütçe',
+      'description':
+          'Bütçe, senin oyun oynamak için biriktirdiğin bozuk paraların gibi düşünebilirsin. Tıpkı senin paranın bir sınırı olduğu gibi, herkesin de harcayabileceği belli bir miktar parası vardır. Bu paraya "bütçe" denir. Bütçe, bir ayda ne kadar harcayabileceğini belirlemene yardımcı olur. Örneğin, oyuncak almak istiyorsan, önce bütçeni kontrol edersin. Eğer yeterli paran varsa, o oyuncağı alabilirsin. Ama paran yetmiyorsa, biraz daha biriktirmen gerekir.'
+    },
+    {
+      'id': 2,
+      'title': 'Empati',
+      'description':
+          'Empati, başkalarının nasıl hissettiğini anlamaya çalışmak demektir. Tıpkı arkadaşının oyuncağını kırdığında onun üzüldüğünü anladığın gibi. Başka birinin yerine kendini koyup onun ne hissettiğini düşünmek empati yapmaktır. Mesela arkadaşın hasta olduğunda ona geçmiş olsun demek ve onun için üzülmek empati göstermektir. Ya da bir hayvanın aç olduğunu görünce ona yemek vermek de empati örneğidir.',
+    },
+    {
+      'id': 3,
+      'title': 'Estetik',
+      'description':
+          'Estetik, bir şeyin güzel olup olmadığına karar verdiğimizde kullandığımız bir kelime. Bir resim çok güzel, bir çiçek çok hoş, bir oyuncak çok şık gibi cümlelerde estetik kelimesinin anlamına yakın kelimeler kullanırız. Estetik, sadece güzellikle ilgili değil, aynı zamanda bir şeyin nasıl göründüğüne, bize nasıl hissettirdiğine de bakar. Örneğin, rengârenk bir balon bizi mutlu edebilir, sakinleştirici bir müzik dinlemek hoşumuza gidebilir. İşte bu duygular da estetikle ilgilidir. Estetik, sanat, moda, tasarım gibi alanlarda çok önemlidir. Bir ressam güzel bir tablo yapmak için, bir tasarımcı şık bir elbise çizmek için estetik bilgisine ihtiyaç duyar.',
+    },
+    {
+      'id': 4,
       'title': 'Melankolik',
       'description':
           'Melankolik demek, biraz üzgün ve düşünceli olmak demektir. Mesela, yağmurlu bir günde pencereden dışarıyı izlerken biraz hüzünlü hissedersin ya, işte o sırada kendini melankolik hissedebilirsin. Melankolik olan insanlar, bazen yalnız kalmayı, kitap okumayı veya müzik dinlemeyi severler. Bu, kötü bir şey değil, sadece bir duygu durumudur. Tıpkı mutlu, heyecanlı veya kızgın olmak gibi.',
     },
     {
-      'id': 2,
-      'title': 'Gökkuşağı',
+      'id': 8,
+      'title': 'Mikroskop',
       'description':
-          'Yağmurdan sonra gökyüzünde oluşan, birbirine geçmiş renkli çizgiler.',
+          'Mikroskop, çok küçük şeyleri büyütüp görebilmemizi sağlayan bir büyüteç gibi düşün. Gözümüzle göremediğimiz kadar küçük olan böceklerin gözleri, bitki hücreleri veya toz tanecikleri gibi şeyleri mikroskop sayesinde daha yakından inceleyebiliriz. Tıpkı bir büyüteçle bir böceği daha büyük görmek gibi, mikroskop da çok küçük şeyleri büyüterek bize gösterir. Mesela bir damla suyun içinde yüzlerce küçük canlı olduğunu biliyor muydun? İşte bu canlıları görebilmek için mikroskoba ihtiyacımız var.'
     },
     {
-      'id': 3,
-      'title': 'Kelebek',
+      'id': 5,
+      'title': 'Nostalji',
       'description':
-          'Kanatları renkli ve pullu olan, çiçeklerden nektar emerek beslenen küçük bir böcek.',
+          'Nostalji, geçmişe duyulan özlem demektir. Eskiden yaşadığın güzel günleri hatırladığında hissettiğin o sıcaklık ve özlem duygusu nostaljidir. Örneğin, çocukluğunda oynadığın oyuncakları, yaşadığın maceraları hatırladığında nostaljik bir duyguya kapılabilirsin. Nostalji, bazen bir fotoğraf, bir şarkı veya bir koku sayesinde canlanır. Bu tür şeyler, geçmişe dair güzel anılarımızı hatırlatır ve bizi mutlu eder.',
+    },
+    {
+      'id': 6,
+      'title': 'Paradoks',
+      'description':
+          'Paradoks, ilk bakışta doğru gibi görünen ama aslında bir çelişki içeren bir durumdur. Yani, aynı anda hem doğru hem de yanlış gibi görünen bir şeydir. Bu biraz kafa karıştırıcı olabilir, değil mi? Örneğin: "Yarın dün olacak" demek bir paradoks. Çünkü yarın bugün gelecek, dün ise geçmişte kaldı. Bu iki şey aynı anda olamaz. Başka bir örnek: "Bu cümle yanlıştır." Bu cümle hem doğru hem de yanlış gibi görünüyor. Eğer cümle doğruysa, o zaman yanlış olduğu anlamına gelir. Ama yanlışsa, o zaman doğru olduğu anlamına gelir.',
+    },
+    {
+      'id': 7,
+      'title': 'Sözleşme',
+      'description':
+          'Sözleşme, iki kişinin veya daha fazla kişinin bir anlaşma yapmasıdır. Tıpkı arkadaşınla oyun oynamaya başlamadan önce "Sen saklan, ben seni arayacağım" diye anlaştığınız gibi. Sözleşmelerde de insanlar ne yapacaklarına, ne vereceklerine veya ne alacaklarına dair söz verirler. Örneğin: Bir oyuncak satın alırken, sen parayı verirsin, mağaza da sana oyuncağı verir. İşte bu alışveriş, senin ve mağazanın arasında küçük bir sözleşmedir. Ya da bir oyun oynarken, kurallarına hep birlikte karar verirsiniz ve bu kurallar sizin oyun sözleşmenizi oluşturur. Sözleşmeler, hem çocuklar hem de büyükler için önemlidir. Çünkü sözleşmeler sayesinde herkes ne yapacağını bilir ve anlaşmazlıklar önlenir.',
     },
   ];
 
@@ -26,7 +62,7 @@ abstract class DictionaryData {
       'id': 1,
       'title': 'Acı patlıcanı kırağı çalmaz.',
       'description':
-          'Düşünsene, kışın soğuğunda patlıcanlar üşür değil mi? Ama acı patlıcanlar diğer sebzelere göre daha dayanıklıdır. Yani, çok zorluk görmüş olan insanlar, küçük bir soğuktan etkilenmezler. Tıpkı acı patlıcan gibi, zorluklar yaşamış insanlar da hayattaki küçük sorunlara daha kolay dayanabilirler. Bu atasözü bize, zorlukların bizi daha güçlü yapabileceğini anlatır.',
+          'Düşünsene, kışın hava soğuğunda patlıcanlar üşür değil mi? Ama acı patlıcanlar diğer sebzelere göre daha dayanıklıdır. Yani, çok zorluk görmüş olan insanlar, küçük bir soğuktan etkilenmezler. Tıpkı acı patlıcan gibi, zorluklar yaşamış insanlar da hayattaki küçük sorunlara daha kolay dayanabilirler. Bu atasözü bize, zorlukların bizi daha güçlü yapabileceğini anlatır.',
     },
     {
       'id': 2,
@@ -311,7 +347,7 @@ abstract class DictionaryData {
       'id': 1,
       'title': 'Abayı yakmak',
       'description':
-          'Bir şeye çok ama çok bağlanmak, o şey olmadan yapamaz hâle gelmek demek. Bir şeye gönül vermek, âşık olmak demek.Mesela, en sevdiğin oyuncağın olmadan çok üzülürsün, değil mi? İşte bir şeye senin oyuncağına bağlandığın kadar bağlanmak "abayı yakmak" demek.',
+          'Bir şeye çok ama çok bağlanmak, o şey olmadan yapamaz hâle gelmek demek. Bir şeye gönül vermek, âşık olmak demek. Mesela, en sevdiğin oyuncağın olmadan çok üzülürsün, değil mi? İşte bir şeye senin oyuncağına bağlandığın kadar bağlanmak "abayı yakmak" demek.',
     },
     {
       'id': 2,
