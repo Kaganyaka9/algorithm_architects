@@ -38,6 +38,7 @@ dependencies:
   google_generative_ai: ^0.4.6
   image_picker: ^1.1.2
   image_picker_web: ^4.0.0
+  flutter_launcher_icons: ^0.14.1
 
 dev_dependencies:
   flutter_test:
