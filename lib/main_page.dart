@@ -31,12 +31,12 @@ class MainPageState extends State<MainPage> {
         children: _pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        // fixedColor: Colors.blue,
         backgroundColor: primaryColor,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white70,
         currentIndex: _navIndex,
         onTap: (int index) => setState(() => _navIndex = index),
+        iconSize: 35,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

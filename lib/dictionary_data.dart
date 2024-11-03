@@ -1,4 +1,5 @@
-/// The `DictionaryData` class stores words, proverbs, and idioms and their descriptions.
+/// The `DictionaryData` class stores words, proverbs, and idioms
+/// and their descriptions.
 abstract class DictionaryData {
   static const List<Map<String, dynamic>> kelimeler = [
     {

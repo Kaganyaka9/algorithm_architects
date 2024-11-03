@@ -20,6 +20,7 @@ enum EntryType {
   deyim,
 }
 
+/// Returns the asset name of the image for the given type and index.
 String getAssetName(EntryType type, int index) {
   final folder = switch (type) {
     EntryType.kelime => 'kelime',
@@ -35,6 +36,7 @@ String getAssetName(EntryType type, int index) {
   return 'assets/$folder/$id.jpeg';
 }
 
+/// Shows an alert dialog with a message if an error occurs.
 void showAlert(BuildContext context, {bool shouldPop = false}) {
   var alert = AlertDialog(
     title: const Text(
@@ -64,6 +66,7 @@ void showAlert(BuildContext context, {bool shouldPop = false}) {
   showDialog(context: context, builder: (BuildContext context) => alert);
 }
 
+/// Creates a text field decoration with the given hint text.
 InputDecoration createTextFieldDecoration(String hintText) {
   return InputDecoration(
     hintText: hintText,

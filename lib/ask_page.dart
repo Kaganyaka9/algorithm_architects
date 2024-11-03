@@ -3,7 +3,9 @@ import 'package:algorithm_architects/ai_requests.dart';
 import 'package:algorithm_architects/shared.dart';
 import 'package:image_picker/image_picker.dart';
 
-/// A page where users upload a photo of their questions which they couldn't answer and write their steps to solve. AI responses with a text that explains why their answer is incorrect.
+/// A page where users upload a photo of their questions which they couldn't
+/// answer and write their steps to solve. AI responses with a text that
+/// explains why their answer is incorrect.
 class AskPage extends StatefulWidget {
   const AskPage({super.key});
 

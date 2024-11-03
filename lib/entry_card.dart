@@ -3,7 +3,8 @@ import 'package:algorithm_architects/shared.dart';
 import 'package:algorithm_architects/entry_details.dart';
 import 'package:algorithm_architects/dictionary_data.dart';
 
-/// A card that displays the title and definition of a dictionary entry.
+/// A card that displays the image, title,
+/// and the definition of a dictionary entry.
 class EntryCard extends StatelessWidget {
   final EntryType type;
   final int index;
@@ -48,8 +49,11 @@ class EntryCard extends StatelessWidget {
                     child: ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 300),
                       child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.asset(getAssetName(type, index))),
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.asset(
+                          getAssetName(type, index),
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -67,7 +71,9 @@ class EntryCard extends StatelessWidget {
                           },
                           textAlign: TextAlign.center,
                           style: const TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.bold),
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ],
                     ),

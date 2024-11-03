@@ -4,6 +4,8 @@ import 'package:algorithm_architects/entry_card.dart';
 import 'package:algorithm_architects/ai_requests.dart';
 import 'package:algorithm_architects/dictionary_data.dart';
 
+/// A page that displays the details of a dictionary entry (image, title,
+/// and description) and allows the user to check if a sentence is correct.
 class EntryDetails extends StatefulWidget {
   final EntryType type;
   final int index;
@@ -91,9 +93,11 @@ class EntryDetailsState extends State<EntryDetails> {
                 TextButton(
                   onPressed: !_aiChecking ? _checkSentence : null,
                   style: TextButton.styleFrom(
-                      backgroundColor: secondaryColor,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16))),
+                    backgroundColor: secondaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
                   child: const Text(
                     'Kontrol et',
                     style: TextStyle(
@@ -109,6 +113,7 @@ class EntryDetailsState extends State<EntryDetails> {
     );
   }
 
+  /// Sets the information text above based on the type of the dictionary entry.
   String _setInfoText() {
     final wordType = switch (widget.type) {
       EntryType.kelime => 'kelimeyi',
@@ -118,6 +123,8 @@ class EntryDetailsState extends State<EntryDetails> {
     return wordType;
   }
 
+  /// Checks if the user has used the word/proverb/idiom correctly
+  /// using the AI model.
   Future<void> _checkSentence() async {
     setState(() {
       _aiChecking = true;

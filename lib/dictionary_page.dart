@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:algorithm_architects/shared.dart';
 import 'package:algorithm_architects/dictionary_details.dart';
 
+/// A page that lists different dictionaries (words, proverbs, idioms).
 class DictionaryPage extends StatelessWidget {
   const DictionaryPage({super.key});
 
@@ -24,12 +25,7 @@ class DictionaryPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4),
                 child: InkWell(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const DictionaryDetails(
-                                type: EntryType.kelime,
-                              ))),
+                  onTap: () => _getDetails(context, EntryType.kelime),
                   child: const Card(
                     color: secondaryColor,
                     child: Padding(
@@ -45,12 +41,7 @@ class DictionaryPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4),
                 child: InkWell(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const DictionaryDetails(
-                                type: EntryType.atasozu,
-                              ))),
+                  onTap: () => _getDetails(context, EntryType.atasozu),
                   child: const Card(
                     color: secondaryColor,
                     child: Padding(
@@ -66,12 +57,7 @@ class DictionaryPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4),
                 child: InkWell(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const DictionaryDetails(
-                                type: EntryType.deyim,
-                              ))),
+                  onTap: () => _getDetails(context, EntryType.deyim),
                   child: const Card(
                     color: secondaryColor,
                     child: Padding(
@@ -87,5 +73,15 @@ class DictionaryPage extends StatelessWidget {
             ],
           )),
     );
+  }
+
+  /// Navigate to the related dictionary.
+  Future<void> _getDetails(BuildContext context, EntryType type) async {
+    await Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => DictionaryDetails(
+                  type: type,
+                )));
   }
 }

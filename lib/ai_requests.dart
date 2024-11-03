@@ -3,7 +3,8 @@ import 'package:algorithm_architects/shared.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:image_picker/image_picker.dart';
 
-/// AIRequests class contains static methods to interact with the Gemini AI model.
+/// AIRequests class contains static methods to interact
+/// with the Gemini AI model.
 abstract class AIRequests {
   /// Checks if user has used the word correctly in a sentence.
   static Future<Map<String, dynamic>> checkSentence(
@@ -22,7 +23,8 @@ abstract class AIRequests {
         break;
     }
 
-    // Change the generation config to return a JSON response. Response includes a bool (cevap) and a string (aciklama).
+    // Change the generation config to return a JSON response.
+    // Response includes a bool (cevap) and a string (aciklama).
     final GenerationConfig generationConfig = GenerationConfig(
       responseSchema: Schema(
         SchemaType.object,
@@ -36,7 +38,8 @@ abstract class AIRequests {
       responseMimeType: 'application/json',
     );
 
-    // Create the model with the generation config, API key and system instruction.
+    // Create the model with the generation config, API key and
+    // system instruction.
     final model = GenerativeModel(
       model: 'gemini-1.5-flash-latest',
       generationConfig: generationConfig,
@@ -70,28 +73,24 @@ abstract class AIRequests {
     }
   }
 
-  /// Ask a question by providing an image of the question and string of user's answer.
+  /// Ask a question by providing an image of the question and
+  /// string of user's answer.
   static Future<String> askQuestion(String userAnswer, XFile image) async {
+    // Create model with a system instruction and API key.
     final model = GenerativeModel(
       model: 'gemini-1.5-flash-latest',
       apiKey: const String.fromEnvironment("Gemini_API_KEY"),
       systemInstruction: Content.text(
           'Sen bir ilkokul matematik öğretmenisin. Bir öğrenci aşağıdaki soruyu çözemedi ve çözmeye çalıştığı adımları yazdı. Soruyu adım adım incele. Öğrencinin nerede hata yaptığını bul ve öğrenciye açıkla. Öğrenci işlem hatası yaparak sonucu yanlış bulmuş olabilir. Öğrenciye sorunun cevabını kesinlikle söyleme. İlkokul öğrencisine açıklarmış gibi açıkla. Türkçe açıkla.'),
     );
+    // Set the prompt as user's answer and send the generation request.
     final prompt = userAnswer;
     final content = [
       Content.text(prompt),
       Content.data("image/jpeg", await image.readAsBytes())
     ];
-    // final content2 = [
-    //   Content.multi(parts: [
-    //     Content.text(prompt),
-    //     Content.data("image", await image.readAsBytes())
-    //   ])
-    // ];
-
     final response = await model.generateContent(content);
-    print(response.text);
+    // Directly return the response text.
     return response.text!;
   }
 }

@@ -40,7 +40,8 @@ class HomePage extends StatelessWidget {
   /// Get the index for the word, proverb or idiom of the day.
   /// The index is calculated by the current day of the year.
   int _getIndexOfTheDay() {
-    // Get the difference between the current day and 3rd of November 2024 (first day of this project).
+    // Get the difference between the current day and
+    // 3rd of November 2024 (first day of this project).
     final difference = DateTime.now().difference(DateTime(2024, 11, 3)).inDays;
     return difference;
   }
