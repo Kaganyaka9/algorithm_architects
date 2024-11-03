@@ -1,18 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:algorithm_architects/dictionary_data.dart';
 
-// const Color primaryColor = Color(0xFF2C8FFF);
-// const Color secondaryColor = Color(0xFF00B5ff);
-// const Color lightColor = Color(0xFFE4F0FF);
-
 const Color primaryColor = Color(0xFF2C8FFF);
 const Color secondaryColor = Color.fromARGB(255, 83, 206, 255);
 const Color lightColor = Color(0xFFafc4fb);
-
-// const Color primaryColor = Color.fromARGB(255, 142, 207, 204);
-// const Color lightColor = Color.fromARGB(255, 176, 192, 211);
-// const Color secondaryColor = Color.fromARGB(255, 188, 252, 247);
-// const Color darkColor = Color.fromARGB(255, 23, 42, 58);
 
 enum EntryType {
   kelime,
